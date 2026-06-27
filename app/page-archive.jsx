@@ -334,9 +334,9 @@ function Archive({ navigate, user }) {
           </thead>
           <tbody>
             {rows.map(p => (
-              <tr key={p.nr}>
+              <tr key={p.nr} className="ar-row-link" onClick={() => navigate('problem')} title="Open problem">
                 <td className="ar-nr mono">{p.nr}</td>
-                <td className="ar-title"><span className="ar-check">{p.solved ? <Icon name="check" size={14} stroke={2.4}/> : null}</span>{p.title}</td>
+                <td className="ar-title"><span className="ar-check">{p.solved ? <Icon name="check" size={14} stroke={2.4}/> : null}</span><span className="ar-title-txt">{p.title}</span></td>
                 <td className="ar-author">{p.author}</td>
                 <td className="ar-source">{p.source}</td>
                 <td className="ar-ed">{p.editorial === 'locked'

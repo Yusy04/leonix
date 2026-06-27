@@ -217,6 +217,9 @@
 .arch-table tbody td { padding: 7px 14px; border-bottom: 1px solid rgba(124,240,63,0.06); white-space: nowrap; }
 .arch-table tbody tr { transition: background var(--t-fast) var(--ease-out); }
 .arch-table tbody tr:hover { background: rgba(84,232,23,0.05); }
+.ar-row-link { cursor: pointer; }
+.ar-row-link:hover .ar-title-txt { text-decoration: underline; text-underline-offset: 3px; }
+.ar-row-link:hover .ar-nr { color: var(--brand-300); }
 
 .ar-nr { color: var(--fg); width: 70px; }
 .ar-title { font-weight: 600; color: var(--brand-300); }

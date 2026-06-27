@@ -105,10 +105,16 @@ int main() {
 
 /* ---------- right-hand code editor ---------- */
 function PbEditor() {
-  const tools = [['share','Share'],['doc','Open file'],['arrow-up-r','Download']];
   const botTabs = ['Input','Output','Stderr','Compilation','Execution','Examples','Submission'];
+  const [full, setFull] = usePb(false);
+  React.useEffect(() => {
+    if (!full) return;
+    const onKey = e => { if (e.key === 'Escape') setFull(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [full]);
   return (
-    <div className="pb-editor hud">
+    <div className={'pb-editor hud' + (full ? ' is-full' : '')}>
       <span className="hud-corners"></span>
       <div className="pe-bar">
         <div className="pe-tools">
@@ -117,7 +123,9 @@ function PbEditor() {
           <button className="pe-tool"><Icon name="arrow-up-r" size={14}/> Download</button>
           <button className="pe-lang">C++ <Icon name="chev-d" size={14}/></button>
         </div>
-        <button className="pe-tool"><Icon name="grid" size={14}/> Fullscreen</button>
+        <button className="pe-tool pe-full" onClick={() => setFull(f => !f)}>
+          <Icon name={full ? 'close' : 'grid'} size={14}/> {full ? 'Exit fullscreen' : 'Fullscreen'}
+        </button>
       </div>
 
       <CodePane code={PB_BOILER} className="pe-main"/>
