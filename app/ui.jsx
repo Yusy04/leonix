@@ -59,6 +59,12 @@ function Icon({ name, size = 16, stroke = 1.6, className }) {
     case 'briefcase':return <svg {...props}><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg>;
     case 'chart':    return <svg {...props}><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>;
     case 'paw':      return <svg {...props}><circle cx="7" cy="9" r="1.8"/><circle cx="12" cy="7" r="1.8"/><circle cx="17" cy="9" r="1.8"/><circle cx="19" cy="14" r="1.6"/><path d="M12 12c-3 0-5 2.2-5 4.5C7 18.4 9 19 12 19s5-.6 5-2.5C17 14.2 15 12 12 12z"/></svg>;
+    case 'hash':     return <svg {...props}><path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/></svg>;
+    case 'layers':   return <svg {...props}><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5"/></svg>;
+    case 'refresh':  return <svg {...props}><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>;
+    case 'list':     return <svg {...props}><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>;
+    case 'sun':      return <svg {...props}><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>;
+    case 'moon':     return <svg {...props}><path d="M20 14.5A8 8 0 0 1 9.5 4 7 7 0 1 0 20 14.5z"/></svg>;
     case 'logo':     return null;
     default: return null;
   }

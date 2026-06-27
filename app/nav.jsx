@@ -1,7 +1,7 @@
 /* global React, Icon, Avatar, HexChip */
 const { useState, useEffect, useRef } = React;
 
-function TopNav({ route, navigate, user, onOpenSearch }) {
+function TopNav({ route, navigate, user, onOpenSearch, theme, onToggleTheme }) {
   const [openProfile, setOpenProfile] = useState(false);
   const [openMobile, setOpenMobile] = useState(false);
   const [openCmd, setOpenCmd] = useState(false);
@@ -51,6 +51,11 @@ function TopNav({ route, navigate, user, onOpenSearch }) {
               <Icon name="search" size={14}/>
               <span className="muted">Search…</span>
               <span className="kbd mono">⌘K</span>
+            </button>
+            <button className="btn btn-ghost btn-icon theme-toggle" onClick={onToggleTheme}
+                    title={theme === 'light' ? 'Switch to dark' : 'Switch to light'}
+                    aria-label="Toggle color theme">
+              <Icon name={theme === 'light' ? 'moon' : 'sun'} size={16}/>
             </button>
             {user.authed ? (
               <>

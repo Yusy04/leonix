@@ -11,7 +11,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 
 function App() {
-  const [route, setRoute] = useState({ page: 'home', params: {} });
+  const [route, setRoute] = useState({ page: 'problem', params: {} });
   const [user, setUser] = useState({
     authed: true,
     name: 'Alex Popescu',
@@ -26,6 +26,16 @@ function App() {
   });
   const [tweaks, setTweaks] = useState(TWEAK_DEFAULTS);
   const [tweakOpen, setTweakOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    try { return localStorage.getItem('leonix-theme') || 'dark'; } catch (e) { return 'dark'; }
+  });
+
+  // apply + persist theme
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem('leonix-theme', theme); } catch (e) {}
+  }, [theme]);
+  const toggleTheme = useCallback(() => setTheme(t => (t === 'light' ? 'dark' : 'light')), []);
 
   const navigate = useCallback((page, params = {}) => {
     setRoute({ page, params });
@@ -68,11 +78,12 @@ function App() {
 
   return (
     <div className="app-root" data-screen-label={route.page}>
-      {!noChrome && <TopNav route={route} navigate={navigate} user={user} />}
+      {!noChrome && <TopNav route={route} navigate={navigate} user={user} theme={theme} onToggleTheme={toggleTheme} />}
       <main>
         {route.page === 'home' && <Home navigate={navigate} user={user}/>}
         {route.page === 'shop' && <Shop navigate={navigate} user={user}/>}
         {route.page === 'archive' && <Archive navigate={navigate} user={user}/>}
+        {route.page === 'problem' && <Problem navigate={navigate} user={user}/>}
         {route.page === 'product' && <ProductDetail navigate={navigate} user={user} slug={route.params.slug}/>}
         {route.page === 'course' && <Course navigate={navigate} user={user} id={route.params.id}/>}
         {route.page === 'calendar' && <Calendar navigate={navigate} user={user}/>}

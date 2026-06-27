@@ -46,6 +46,7 @@ function Hero({ navigate }) {
 
         <div className="hero2-visual fade-in delay-2">
           <img src="assets/mascots/hero-cat.png" className="mascot hero2-cat" alt="" width="462" height="263"/>
+          <img src="assets/mascots/cat-paws-tail.png" className="mascot hero2-paws" alt="" width="394" height="184"/>
           <div className="term hero2-term">
             <div className="term-bar">
               <span className="term-dots"><i style={{background:'#f06464'}}></i><i style={{background:'#f5b461'}}></i><i style={{background:'#54e817'}}></i></span>
@@ -353,59 +354,4 @@ function Community({ navigate }) {
   );
 }
 
-/* ---------------- Problem Archive (standalone page) ---------------- */
-function Archive({ navigate, user }) {
-  const cats = ['All', 'Olympiad', 'Interview', 'Bacalaureat', 'Quizzes', 'Data structures', 'Graphs', 'DP'];
-  const [active, setActive] = useState('All');
-  const problems = [
-    { id: 'P-1042', title: 'Greedy Coin Change', diff: 'easy',   cat: 'Olympiad',   acc: 86, solved: false },
-    { id: 'P-2210', title: 'Segment Tree Range Sum', diff: 'hard', cat: 'Data structures', acc: 41, solved: true },
-    { id: 'P-1188', title: 'Two Pointers — Pair Sum', diff: 'easy', cat: 'Interview', acc: 92, solved: true },
-    { id: 'P-3301', title: 'Bitmask DP on Subsets', diff: 'hard', cat: 'DP', acc: 33, solved: false },
-    { id: 'P-1450', title: 'BFS Shortest Path Grid', diff: 'medium', cat: 'Graphs', acc: 67, solved: false },
-    { id: 'P-0912', title: 'Bacalaureat — Funcții', diff: 'medium', cat: 'Bacalaureat', acc: 74, solved: false },
-    { id: 'P-2055', title: 'Sliding Window Maximum', diff: 'medium', cat: 'Interview', acc: 58, solved: false },
-    { id: 'P-1777', title: 'CS Quiz — Complexity', diff: 'easy', cat: 'Quizzes', acc: 88, solved: true },
-  ];
-  const list = active === 'All' ? problems : problems.filter(p => p.cat === active);
-  return (
-    <div className="container-wide" style={{paddingBottom: 64}}>
-      <div className="page-header">
-        <span className="eyebrow-slash">// Problem Archive</span>
-        <h1>Explore the Problem Archive</h1>
-        <p className="subtitle">Thousands of curated problems across competitive programming, interviews and the Romanian Baccalaureate. Use the AI agent to build your self-training schedule.</p>
-      </div>
-
-      <div className="archive-stats" style={{position:'static', display:'flex', marginBottom: 28}}>
-        <div className="archive-stat"><span className="archive-stat-ico"><Icon name="target" size={22}/></span><div className="stack-2"><span className="archive-stat-num mono">10K+</span><span className="t-xs dim">Problems</span></div></div>
-        <div className="archive-stat"><span className="archive-stat-ico"><Icon name="chart" size={22}/></span><div className="stack-2"><span className="archive-stat-num mono">25+</span><span className="t-xs dim">Categories</span></div></div>
-        <div className="archive-stat"><span className="archive-stat-ico"><Icon name="users" size={22}/></span><div className="stack-2"><span className="archive-stat-num mono">50K+</span><span className="t-xs dim">Active Learners</span></div></div>
-      </div>
-
-      <div className="row gap-2" style={{flexWrap:'wrap', marginBottom: 20}}>
-        {cats.map(c => <button key={c} className="chip" onClick={() => setActive(c)} style={active===c?{borderColor:'var(--brand-500)', color:'var(--brand-300)', background:'rgba(84,232,23,0.08)'}:{}}>{c}</button>)}
-      </div>
-
-      <div className="hud" style={{padding: '8px 0'}}>
-        <span className="hud-corners"></span>
-        <table className="table">
-          <thead><tr><th>ID</th><th>Problem</th><th>Difficulty</th><th>Category</th><th>Acceptance</th><th></th></tr></thead>
-          <tbody>
-            {list.map(p => (
-              <tr key={p.id}>
-                <td className="mono dim">{p.id}</td>
-                <td><div className="row gap-2">{p.solved && <Icon name="check" size={14} className="brand-fg"/>}<span className="strong">{p.title}</span></div></td>
-                <td><span className="mono t-xs" style={{color: p.diff==='easy'?'var(--brand-400)':p.diff==='medium'?'var(--warning)':'var(--danger)'}}>{p.diff}</span></td>
-                <td className="t-sm muted">{p.cat}</td>
-                <td className="mono t-sm">{p.acc}%</td>
-                <td><button className="btn btn-glow btn-sm" onClick={() => navigate('buddy')}>{p.solved ? 'Review' : 'Solve'}</button></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-Object.assign(window, { Home, Archive });
+Object.assign(window, { Home });
